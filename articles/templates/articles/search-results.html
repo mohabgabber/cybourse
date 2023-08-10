@@ -1,0 +1,18 @@
+{% extends "users/base2.html" %}
+{% block title %}Search Results{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row mx-auto">
+        <h1 class="text-center">Your Search Results</h1>
+        {% for article in results %}
+            {% if article in request.user.saved.articles %}
+                {% include 'articles/articles-saved-template.html' %}
+            {% else %}
+                {% include 'articles/articles-template.html' %}
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock content %}

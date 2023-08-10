@@ -1,0 +1,39 @@
+{% extends "users/base2.html" %}
+{% load static %}
+{% block title %}Quizzes solved by @{{user.username}}{% endblock title %}
+{% block metatags %}
+<meta name="author" content="{{user.first_name}} {{user.last_name}}">
+<meta name="og:image" content="https://fphl.org{{profile.picture.url}}" />
+<meta name="og:title" content="@{{user.username}} Profile | FPHL.org" />
+<meta property="og:type" content="website" />
+<meta name="og:description" content="{{profile.bio}}" />
+{% endblock metatags %}
+{% block content %}
+{% include "profiles/profile_template.html" %}
+<div class="row mb-3 mx-auto mt-3">
+    <h5 class="text-center">Solved Quizzes</h5>
+    {% if profile.show_quiz == False %}
+    <h4 class="text-center mb-3">@{{user.username}} chose to hide the quizzes he solved 🥲</h4>
+    <img src="{% static 'svgs/void.svg' %}" class="img-fluid  w-50 mx-auto" />
+    <!-- </div> -->
+    {% else %}
+    {% for question in questions %}
+    {% if not question.questionset.private or request.user in question.questionset.choose_users.all %}
+    <div class="col-md mx-auto mt-2">
+        <div class="card mx-auto" style="width: 18rem;">
+            <a href="{% url 'questions-detail' question.questionset.id %}" class="text-black text-decoration-none">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{question.questionset.name}}</h5>
+                    <p class="card-text mb-1">No. of questions: {{question.questionset.questions.count}}</p>
+                    <p class="card-text mb-1">Subject: {{question.questionset.subject.name}}
+                        ({{question.questionset.subsubject.name}})</p>
+                    <p class="card-text">Difficulty: {{question.questionset.difficulty}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends "users/base2.html" %}
+{% block title %}Propose a new article{% endblock title %}
+{% block metatags %}
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+{% endblock metatags %}
+{% block content %}
+
+<h4 class="text-center">Propose a new article 😍</h4>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Article Title</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="title"
+            placeholder="a new amazing article">
+    </div>
+    <div class="mb-3">
+        <label for="articledesc" class="form-label">Article Description</label>
+        <input type="text" class="form-control" id="articledesc" name="description"
+            placeholder="this is very informative">
+    </div>
+    <div class="mb-3">
+        <label for="subjectselect" class="form-label">Choose Subject</label>
+        <select class="form-select" id="subjectselect" name="subject" aria-label="Default select example">
+            {% for subj in subjects %}
+            <option value="{{subj.id}}">{{subj.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="contentarticle" class="form-label">Article Content</label>
+        <input id="x" type="hidden" name="content">
+        <trix-editor input="x" class="form-control" id="contentarticle"></trix-editor>
+    </div>
+    <!-- <div class="mb-3">
+        <label for="formFile" class="form-label">Article image</label>
+        <input class="form-control" name="image" type="file" id="formFile">
+    </div> -->
+    <div class="mb-3">
+        {{captcha.captcha}}
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+{% endblock content %}

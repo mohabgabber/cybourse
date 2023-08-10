@@ -1,0 +1,54 @@
+{% extends "users/base2.html" %}
+{% load mathfilters %}
+{% block title %}Leaderboard{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="mx-auto col">
+        <h4 class="text-center">🎖️ Leaderboard 🎖️</h4>
+
+        <ol class="list-group list-group-numbered mx-auto" style="max-width: 600px;">
+            {% for prof in profiles %}
+            <li class="list-group-item"><img src="{{prof.picture.url}}" class="img-fluid rounded-circle" width="40px" />
+                <a href="{% url 'profile-public' prof.user.username %}"
+                    class="text-decoration-none">@{{prof.user.username}}</a> <span class="font-monospace fw-bold"
+                    style="color: orange;">[{{prof.xp}} XP]</span>
+            </li>
+            {% endfor %}
+        </ol>
+        <!-- ! PAGINATION -->
+        <nav aria-label="Page navigation example" style="margin-top: 10px;">
+            <ul class="pagination justify-content-center">
+                {% if profiles.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{articles.previous_page_number}}">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
+                {% endif %}
+                {% if profiles.has_previous %}
+                <li class="page-item"><a class="page-link"
+                        href="?page={{profiles.previous_page_number}}">{{profiles.previous_page_number}}</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="#">{{profiles.number}}</a></li>
+                {% if profiles.has_next %}
+                <li class="page-item"><a href="?page={{profiles.next_page_number}}"
+                        class="page-link">{{profiles.next_page_number}}</a></li>
+                {% endif %}
+                {% if profiles.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{profiles.next_page_number}}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- ! END OF PAGINATION -->
+    </div>
+</div>
+{% endblock content %}

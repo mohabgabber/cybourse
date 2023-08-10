@@ -1,0 +1,23 @@
+{% extends "users/base2.html" %}
+{% block title %}{{article.title}}{% endblock title %}
+{% block descriptionmeta %}{{article.description}}{% endblock descriptionmeta %}
+{% block metatags %}
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+{% endblock metatags %}
+{% block content %}
+<div class="container">
+    <form method="post" class="mb-3 w-auto">
+        <h5 class="text-center">Suggest Edits</h5>
+        <label class="form-label" for="editiingreason">Type What Did You Change</label>
+        <input type="text" class="form-control mx-auto" name="editreason" id="editingreason">
+        <label for="editingarticle" class="form-label">Edit The Article</label>
+        <input id="x" type="hidden" value="{{article.content|safe}}" name="newarti">
+        <trix-editor input="x" class="form-control mx-auto" id="editingarticle"></trix-editor>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-1">Submit Change</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

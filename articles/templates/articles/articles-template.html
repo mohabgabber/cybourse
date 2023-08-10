@@ -1,0 +1,21 @@
+<div class="card">
+    <a class="text-decoration-none text-dark" href="{% url 'article-detail' article.id %}">
+    <img src="{{article.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{article.title}}</h5>
+        <p class="card-text">{{article.description}}</p>
+        </a>
+        <p class="text-muted">{{article.date|date:"SHORT_DATE_FORMAT"}}</p>
+        <a href="{% url 'article-detail' article.id %}" class="btn btn-primary">Read!</a>
+        {% if request.user.is_authenticated %}
+            {% if article in saved %}
+                <a href="{% url 'remove-save' article.id %}" class="btn btn-outline-danger">Remove</a>
+            {% else %}
+                <a href="{% url 'save-article' article.id %}" class="btn btn-outline-secondary"><i class="fa-solid fa-bookmark"></i></a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-danger">Login to save</a>
+        {% endif %}
+        <br><br><a href="{% url 'subject' article.subject.name %}" class="text-decoration-none fw-bold fs-6">{{article.subject.name}}</a>
+    </div>
+</div>

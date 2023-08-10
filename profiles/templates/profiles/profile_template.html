@@ -1,0 +1,48 @@
+<div class="col-md-2 mb-3 mx-auto">
+    <img src="{{profile.picture.url}}" class="img-fluid mx-auto d-block rounded-circle" alt="..." />
+</div>
+<div class="mx-auto text-center">
+    <h5 class=" text-primary">@{{user.username}}</h5>
+    <h2 class="fw-bold">{{user.first_name}} {{user.last_name}}</h2>
+    <p>{{profile.bio}}</p>
+    {% if request.user == user %}
+    <a href="{% url 'profile-detail' %}" class="btn btn-primary">Edit Profile</a>
+    {% endif %}
+    <div class="fs-4">
+        {% if profile.instagram != "" %}
+        <a href="https://instagram.com/{{profile.instagram}}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        {% endif %}
+        {% if profile.twitter != "" %}
+        <a href="https://twitter.com/{{profile.twitter}}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+        {% endif %}
+    </div>
+</div>
+<hr>
+<div class="row text-center font-monospace">
+    <div class="col-md">
+        <span class="fw-bold fs-4" style="color:red;">{{rank}}%</span>
+        <br>
+        Top
+    </div>
+    <div class="col-md">
+        <span class="fw-bold fs-4" style="color:red;">{{profile.xp}}</span>
+        <br>
+        XP
+    </div>
+    <div class="col-md">
+        <span class="fw-bold fs-4" style="color:orange;">{{articles.count}}</span>
+        <br>
+        Articles Viewed
+    </div>
+    <div class="col-md">
+        <span class="fw-bold fs-4" style="color:orange;">{{questions.count}}</span>
+        <br>
+        Quizzes solved
+    </div>
+</div>
+<hr>
+<nav class="nav  nav-justified">
+    <a class="nav-link" href="{% url 'profile-public' user.username %}">Viewed Articles</a>
+    <a class="nav-link" href="{% url 'profile-solved' user.username %}">Solved Quizzes</a>
+    <a class="nav-link" href="{% url 'profile-contribs' user.username %}">Contributions</a>
+</nav>

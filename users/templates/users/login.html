@@ -1,0 +1,24 @@
+{% extends "users/base2.html" %}
+{% block title %}Login Page{% endblock title %}
+{% block content %}
+<br><br><br>
+<form method="POST" class="mx-auto mb-3 text-center w-75">
+    {% csrf_token %}
+    <h1><i class="fa-solid fa-magnifying-glass"></i> Sign In To FPHL</h1>
+    <div class="mb-3">
+        <label for="usernameinput" class="form-label"><i class="fa-solid fa-user"></i> Username</label>
+        <input type="text" placeholder="Enter Your Username Here" style="text-align: center;" class="form-control"
+            name="username" id="usernameinput" required>
+    </div>
+    <div class="mb-3">
+        <label for="InputPassword" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+        <input type="password" placeholder="Enter Your Password Here" class="form-control" style="text-align: center;"
+            name="password" id="InputPassword" required>
+    </div>
+    {{captcha.captcha}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <br><br><span>Don't Have An Account? <a href="{% url 'register' %}"
+            class="btn btn-outline-success">Register</a></span>
+</form>
+
+{% endblock content %}

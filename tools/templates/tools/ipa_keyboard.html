@@ -1,0 +1,148 @@
+{% extends "users/base2.html" %}
+
+
+{% block title %}I.P.A Keyboard{% endblock title %}
+
+{% block content %}
+
+<div class="mb-3 mt-3">
+
+    <div class="mb-2">
+        <button class="btn btn-outline-danger" onclick="cleararea()">Clear</button>
+        <button class="btn btn-outline-success" onclick="copyarea()">Copy</button>
+    </div>
+    <label for="area" class="mb-2 form-label">Input</label>
+    <textarea rows="5" class="form-control" id="area" rows="3"></textarea>
+</div>
+
+<div class="container mb-2">
+    <div class="col">
+        <button class="btn btn-dark" onclick="addtotext('ɑ')">ɑ</button>
+        <button class="btn btn-dark" onclick="addtotext('æ')">æ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɐ')">ɐ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɑ̃ ')">ɑ̃</button>
+        <button class="btn btn-dark" onclick="addtotext('β')">β</button>
+        <button class="btn btn-dark" onclick="addtotext('ɓ')">ɓ</button>
+        <button class="btn btn-dark" onclick="addtotext('ç')">ç</button>
+        <button class="btn btn-dark" onclick="addtotext('ɕ')">ɕ</button>
+        <button class="btn btn-dark" onclick="addtotext('ð')">ð</button>
+        <button class="btn btn-dark" onclick="addtotext('d͡ʒ')">d͡ʒ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɖ')">ɖ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɗ')">ɗ</button>
+        <button class="btn btn-dark" onclick="addtotext('ə')">ə</button>
+        <button class="btn btn-dark" onclick="addtotext('ɚ')">ɚ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɵ')">ɵ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɛ')">ɛ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɜ')">ɜ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɝ')">ɝ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɛ̃')">ɛ̃</button>
+        <button class="btn btn-dark" onclick="addtotext('ɠ')">ɠ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɢ')">ɢ</button>
+        <button class="btn btn-dark" onclick="addtotext('ħ')">ħ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɦ')">ɦ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɥ')">ɥ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɧ')">ɧ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʜ')">ʜ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɪ')">ɪ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɨ')">ɨ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɪ̈')">ɪ̈</button>
+        <button class="btn btn-dark" onclick="addtotext('ʝ')">ʝ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɟ')">ɟ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɫ')">ɫ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɭ')">ɭ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɬ')">ɬ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʟ')">ʟ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɮ')">ɮ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɱ')">ɱ</button>
+        <button class="btn btn-dark" onclick="addtotext('ŋ')">ŋ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɲ')">ɲ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɳ')">ɳ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɴ')">ɴ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɔ')">ɔ</button>
+        <button class="btn btn-dark" onclick="addtotext('œ')">œ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɒ')">ɒ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɔ̃')">ɔ̃</button>
+        <button class="btn btn-dark" onclick="addtotext('ø')">ø</button>
+        <button class="btn btn-dark" onclick="addtotext('ɸ')">ɸ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɾ')">ɾ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɹ')">ɹ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʁ')">ʁ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʀ')">ʀ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɻ')">ɻ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɽ')">ɽ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʃ')">ʃ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʂ')">ʂ</button>
+        <button class="btn btn-dark" onclick="addtotext('θ')">θ</button>
+        <button class="btn btn-dark" onclick="addtotext('t͡ʃ')">t͡ʃ</button>
+        <button class="btn btn-dark" onclick="addtotext('t͡s')">t͡s</button>
+        <button class="btn btn-dark" onclick="addtotext('ʈ')">ʈ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʊ')">ʊ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʉ')">ʉ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʌ')">ʌ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʋ')">ʋ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɯ')">ɯ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʍ')">ʍ</button>
+        <button class="btn btn-dark" onclick="addtotext('χ')">χ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɣ')">ɣ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʎ')">ʎ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʏ')">ʏ</button>
+        <button class="btn btn-dark" onclick="addtotext('ɤ')">ɤ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʒ')">ʒ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʐ')">ʐ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʑ')">ʑ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʔ')">ʔ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʕ')">ʕ</button>
+        <button class="btn btn-dark" onclick="addtotext('|')">|</button>
+        <button class="btn btn-dark" onclick="addtotext('‖')">‖</button>
+        <button class="btn btn-dark" onclick="addtotext('∅')">∅</button>
+        <button class="btn btn-dark" onclick="addtotext('→')">→</button>
+        <br><br>
+        <button class="btn btn-dark" onclick="addtotext('̀')">̀</button>
+        <button class="btn btn-dark" onclick="addtotext('̄')">̄</button>
+        <button class="btn btn-dark" onclick="addtotext('́')">́</button>
+        <button class="btn btn-dark" onclick="addtotext('̂')">̂</button>
+        <button class="btn btn-dark" onclick="addtotext('̌')">̌</button>
+        <button class="btn btn-dark" onclick="addtotext('᷈')">᷈</button>
+        <button class="btn btn-dark" onclick="addtotext('ˈ')">ˈ</button>
+        <button class="btn btn-dark" onclick="addtotext('ˌ')">ˌ</button>
+        <button class="btn btn-dark" onclick="addtotext('͡')">͡</button>
+        <button class="btn btn-dark" onclick="addtotext('͜')">͜</button>
+        <button class="btn btn-dark" onclick="addtotext('ː')">ː</button>
+        <button class="btn btn-dark" onclick="addtotext('̆')">̆</button>
+        <button class="btn btn-dark" onclick="addtotext('ʰ')">ʰ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʲ')">ʲ</button>
+        <button class="btn btn-dark" onclick="addtotext('ʷ')">ʷ</button>
+        <button class="btn btn-dark" onclick="addtotext('̚')">̚</button>
+        <button class="btn btn-dark" onclick="addtotext('̃')">̃</button>
+        <button class="btn btn-dark" onclick="addtotext('̈')">̈</button>
+        <button class="btn btn-dark" onclick="addtotext('̩')">̩</button>
+        <button class="btn btn-dark" onclick="addtotext('̯')">̯</button>
+        <button class="btn btn-dark" onclick="addtotext('̥')">̥</button>
+        <button class="btn btn-dark" onclick="addtotext('̬')">̬</button>
+        <button class="btn btn-dark" onclick="addtotext('̪')">̪</button>
+        <button class="btn btn-dark" onclick="addtotext('̺')">̺</button>
+        <button class="btn btn-dark" onclick="addtotext('̝')">̝</button>
+        <button class="btn btn-dark" onclick="addtotext('̞')">̞</button>
+        <button class="btn btn-dark" onclick="addtotext('̟')">̟</button>
+        <button class="btn btn-dark" onclick="addtotext('̠')">̠</button>
+    </div>
+</div>
+
+<script>
+    function cleararea() {
+        let area = document.getElementById("area");
+        area.value = "";
+    }
+    function copyarea() {
+        let copyText = document.getElementById("area");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+    }
+    function addtotext(text) {
+        let area = document.getElementById("area");
+        area.value += text;
+    }
+</script>
+
+{% endblock content %}

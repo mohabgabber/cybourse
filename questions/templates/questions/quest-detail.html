@@ -1,0 +1,73 @@
+{% extends "users/base2.html" %}
+{% block descriptionmeta %}Questions and exercises on various topics in the forensic phonetics and linguistics
+field{% endblock descriptionmeta %}
+{% block title %}{{questions.name}}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="col">
+        <h1 class="text-center">{{questions.name}}</h1>
+        <h6 class="text-center">Number Of Questions: {{questions.questions.count}}</h6>
+        <h6 class="text-center">Subject: {{questions.subject.name}}
+        </h6>
+        <h6 class="text-center">Difficulty: {{questions.difficulty}}</h6>
+        <form method="post" class="mx-auto">
+            {% for quest in questions.questions.all %}
+            <div class="card mx-auto mb-3" style="max-width: 540px;">
+                {% if quest.video %}
+                <video src="{{quest.video.url}}" controls class="object-fit-contain" type="video/mp4">Error,
+                    Your
+                    browser doesn't support
+                    this video</video>
+                {% elif quest.audio %}
+                <audio controls class="object-fit-contain mt-3 w-auto">
+                    <source src="{{quest.audio.url}}" type="audio/mpeg">
+                    Error, Your browser doesn't support
+                    this Audio
+                </audio>
+                {% elif quest.picture %}
+                <img src="{{quest.picture.url}}" class="object-fit-contain img-fluid mx-auto" />
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{quest.quest}}</h5>
+                    <hr>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{quest.id}}" id="{{quest.id}}radio1"
+                            value="1">
+                        <label class="form-check-label" for="{{quest.id}}radio1">
+                            {{quest.opt1}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{quest.id}}" id="{{quest.id}}radio2"
+                            value="2">
+                        <label class="form-check-label" for="{{quest.id}}radio2">
+                            {{quest.opt2}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{quest.id}}" id="{{quest.id}}radio3"
+                            value="3">
+                        <label class="form-check-label" for="{{quest.id}}radio3">
+                            {{quest.opt3}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{quest.id}}" id="{{quest.id}}radio4"
+                            value="4">
+                        <label class="form-check-label" for="{{quest.id}}radio4">
+                            {{quest.opt4}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="mx-auto text-center">
+                <button class="btn mb-5 mt-3 btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

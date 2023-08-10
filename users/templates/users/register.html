@@ -1,0 +1,44 @@
+{% extends "users/base2.html" %}
+{% block title %}Register Page{% endblock title %}
+{% block content %}
+<br>
+<form method="POST" class="mx-auto mb-3 text-center">
+    {% csrf_token %}
+    <h1><i class="fa-solid fa-magnifying-glass"></i> Register With FPHL</h1>
+    <div class="row gab-2 mb-3">
+        <label for="fullname" class="form-label"><i class="fa-solid fa-signature"></i> Full name</label>
+        <div class="col-md" id="fullname">
+            <input type="text" name="first_name" class="form-control" placeholder="First name" aria-label="First name">
+        </div>
+        <div class="col-md">
+            <input type="text" name="last_name" class="form-control" placeholder="Last name" aria-label="Last name">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="usernameinput" class="form-label"><i class="fa-solid fa-user"></i> Username</label>
+        <input type="text" placeholder="Enter Your Username Here" style="text-align: center;" class="form-control"
+            name="username" id="usernameinput" required>
+    </div>
+    <div class="mb-3">
+        <label for="emailinput" class="form-label"><i class="fa-solid fa-envelope"></i> Email</label>
+        <input type="text" placeholder="Enter Your Email Here" style="text-align: center;" class="form-control"
+            name="email" id="emailinput" required>
+    </div>
+    <div class="mb-3">
+        <label for="InputPassword1" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+        <input type="password" placeholder="Enter Your Password Here" class="form-control" style="text-align: center;"
+            name="password1" id="InputPassword1" required>
+    </div>
+    <div class="mb-3">
+        <label for="InputPassword2" class="form-label"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+        <input type="password" placeholder="Confirm Your Password Here" class="form-control" style="text-align: center;"
+            name="password2" id="InputPassword2" required>
+    </div>
+    <div class="mb-3">
+        {{captcha.captcha}}
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    <br><br><span>Already Have An Account? <a href="{% url 'login' %}" class="btn btn-light">Login</a></span>
+</form>
+
+{% endblock content %}

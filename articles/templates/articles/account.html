@@ -1,0 +1,25 @@
+{% extends "users/base2.html" %}
+{% block title %}Manage Your Account{% endblock title %}
+
+{% block content %}
+    <div class="mx-auto text-wrap text-break">
+        <h2 class="text-center">Username: {{request.user.username}}</h2>
+        <h2 class="text-center">Email: {{request.user.email}}</h2>
+        <div class="text-center mx-auto gap-2">
+            <!-- <a href="#" class="btn btn-outline-warning" style="margin-top: 5px;">Update Email</a> -->
+        </div>
+        <br><br>
+        <div class="container">
+            <div class="vstack gab-2 mb-3 mx-auto">
+                {% comment %} <h3 class="text-center">What You Can Do:</h3> {% endcomment %}
+                <a href="{% url 'saved-articles-list' %}" class="btn btn-primary mt-1">Saved Articles</a>
+                <a href="{% url 'scores-list' %}" class="btn btn-primary mt-1">Check All Your Question Solves</a>
+                <a href="{% url 'change-password' %}" class="btn btn-warning mt-1">Change Password</a>
+                <a href="{% url 'accdel-conf' %}" class="btn btn-danger mt-1">Delete Account</a>
+                <!-- {% for article in saved %}
+                    {% include 'articles/articles-template.html' %}
+                {% endfor %} -->
+            </div>
+        </div>
+    </div>
+{% endblock content %}

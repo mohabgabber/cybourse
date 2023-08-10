@@ -1,0 +1,156 @@
+{% extends "users/base2.html" %}
+{% load mathfilters %}
+{% block title %}{{article.title}}{% endblock title %}
+{% block descriptionmeta %}{{article.description}}{% endblock descriptionmeta %}
+{% block metatags %}
+<meta name="author" content="{{article.author.first_name}} {{article.author.last_name}}">
+<meta name="keywords" content="{{article.keywords}}">
+<meta name="og:image" content="https://fphl.org{{article.image.url}}" />
+<meta name="og:title" content="{{article.title}}" />
+<meta property="og:type" content="article" />
+<meta name="og:description" content="{{article.description}}" />
+{% endblock metatags %} {% block content %} <br>
+<div class="mx-auto">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{article.title}}</h1>
+                    <span class="meta">
+                        Posted by
+                        <a class="text-decoration-none"
+                            href="{% url 'profile-public' article.author.username %}">{{article.author.first_name}}
+                            {{article.author.last_name}}</a>
+                        on {{article.date|date:"F, jS o"}}
+                    </span>
+                    <img src="{{article.image.url}}" class="img-fluid rounded mt-2 mb-3 border" />
+                    {% if request.user.is_authenticated %}
+                    {% if article in saved %}
+                    <a class="btn mb-2 btn-warning" href="{% url 'save-article' article.id %}">Unsave Article <i
+                            class="fa-solid fa-trash"></i></a>
+                    {% else %}
+                    <a class="btn mb-2 btn-info" href="{% url 'save-article' article.id %}">Bookmark Article <i
+                            class="fa-solid fa-bookmark"></i></a>
+                    {% endif %}
+                    {% else %}
+                    <a class="btn mb-2 btn-info" href="{% url 'login' %}">Login to bookmark this article</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<article class="mb-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 text-break text-wrap col-lg-8 col-xl-7">
+                {{ article.content|safe }}
+                {% if article.quiz.count != 0 %}
+                {% if result %}
+                <hr>
+                <h4 class="text-center">Article Quiz</h4>
+                <div class="card w-100 mx-auto text-bg-{% if result.percent < 50 %}danger{% else %}success{% endif %} mb-3"
+                    style="max-width: 540px">
+                    <div class="card-header">{% if result.percent < 50 %}You did not pass
+                        😔{% else %}You passed 🤩{% endif %}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">You got {{result.percent}}% correct</h5>
+                        <p class="card-text">
+                            No. of questions: {{article.quiz.count}}
+                        </p>
+                        <p class="card-text">
+                            XP gained: {{result.score|mul:10}}
+                        </p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-controls="collapseOne">
+                                Article Quiz
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body w-100">
+                                {% if request.user.is_authenticated %}
+                                <!-- <div class="container mx-auto"> -->
+                                <!-- <div class="col w-auto mx-auto"> -->
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% if msg %}
+                                    <h4 class="text-center text-warning">{{msg}}</h4>
+                                    <hr>
+                                    {% endif %}
+                                    {% for quiz in article.quiz.all %}
+                                    <h4>{{quiz.quest}}</h4>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="1" name="{{quiz.id}}"
+                                            id="{{quiz.id}}opt1check">
+                                        <label class="form-check-label" for="{{quiz.id}}opt1check">
+                                            {{quiz.opt1}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="2" name="{{quiz.id}}"
+                                            id="{{quiz.id}}opt2check">
+                                        <label class="form-check-label" for="{{quiz.id}}opt2check">
+                                            {{quiz.opt2}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="3" name="{{quiz.id}}"
+                                            id="{{quizt.id}}opt3check">
+                                        <label class="form-check-label" for="{{quiz.id}}opt3check">
+                                            {{quiz.opt3}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="4" name="{{quiz.id}}"
+                                            id="{{quiz.id}}opt4check">
+                                        <label class="form-check-label" for="{{quiz.id}}opt4check">
+                                            {{quiz.opt4}}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                </form>
+                                {% else %}
+                                <h4 class="text-center"><a href="{% url 'login' %}" class="btn btn-success">Login to
+                                        test your skills</a></h4>
+                                {% endif %}
+                                <!-- </div> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+</article>
+{% if article.pdf %}
+<div class="text-center mx-auto mt-3">
+    <a class="btn mb-2 btn-outline-dark" href="{{article.pdf.url}}" target="_blank">
+        Download as pdf <i class="fa-solid fa-file-pdf"></i></a>
+</div>
+{% endif %}
+
+
+<div class="text-center fs-6 mb-3">
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'changes-history' article.id %}" class=" text-decoration-none"><i
+            class="fa-sharp fa-solid fa-clock-rotate-left"></i> Change History</a>
+    <a href="{% url 'change-edit' article.id %}" class="text-decoration-none">| <i
+            class="fa-sharp fa-solid fa-pen-nib"></i> Edit This Article</a>
+    {% else %}
+    <a href="{% url 'changes-history' article.id %}" class="text-decoration-none"><i
+            class="fa-sharp fa-solid fa-clock-rotate-left"></i> Change History</a>
+    <a href="#" class="text-decoration-none"><i class="fa-sharp fa-solid fa-pen-nib"></i> Login Edit This
+        Article</a>
+    {% endif %}
+</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+
+{% block title %}Contact Us{% endblock title %}
+{% block descriptionmeta %}contact us on fphl.org{% endblock descriptionmeta %}
+
+{% block content %}
+<div class="container">
+    <h5 class="text-center">Contact Us</h5>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="emailinput" class="form-label">Your Email address</label>
+            <input type="email" class="form-control" name="sendermail" id="emailinput" required placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="subjectinput" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subjectinput" name="title" required placeholder="Thank you guys!">
+        </div>
+        <div class="mb-3">
+            <label for="messageinput" class="form-label">Message</label>
+            <textarea class="form-control" id="messageinput" name="message" required rows="3"></textarea>
+        </div>
+        <div class="mx-auto text-center">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

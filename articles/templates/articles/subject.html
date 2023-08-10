@@ -1,0 +1,20 @@
+{% extends "users/base2.html" %}
+{% block descriptionmeta %}All Articles About {{tag}}{% endblock descriptionmeta %}
+{% block metatags %}
+<meta name="keywords" content="{{tag}}">
+{% endblock metatags %}
+{% block title %}{{tag}}{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row mx-auto">
+            <h1 class="text-center">{{tag}} Articles 😋</h1>
+            {% for article in articles %}
+                <div class="col-md-3 mb-3 mx-auto">
+                    {% include 'articles/articles-template.html' %}
+                </div>
+            {% endfor %}
+            {% include 'articles/pagination.html' %}
+            <br>
+        </div>
+    </div>
+{% endblock content %}

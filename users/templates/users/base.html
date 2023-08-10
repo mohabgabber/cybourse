@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        <meta charset="UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %}{% endblock title %} | Forensic Phonetics & Linguistics</title>
+
+        <meta name="description" property="og:description" content="{% block descriptionmeta %}{% endblock descriptionmeta %}">
+        
+        {% block metatags %}{% endblock metatags %}
+        
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9521NMZ84R"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9521NMZ84R');
+        </script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/14eea8aaed.js" crossorigin="anonymous"></script>
+        <style>
+            .dropdown-item:hover {
+                background-color: black;
+            }
+        </style>
+    </head>
+
+    <body class="bg-dark text-white">
+
+        <nav class="navbar mx-auto navbar-expand-lg mb-3 text-white border-bottom">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="{% url 'home' %}">FPHL 🕵🏻‍♀️🕵🏻‍♂️</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link active text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Subjects
+                            </a>
+                            <ul class="dropdown-menu bg-dark">
+                                <li><a class="dropdown-item text-white" href="{% url 'subject' 'General' %}">General</a></li>
+                                <li><a class="dropdown-item text-white" href="{% url 'subject' 'Phonetics' %}">Phonetics</a></li>
+                                <li><a class="dropdown-item text-white" href="{% url 'subject' 'Linguistics' %}">Linguistics</a></li>
+                                <li><a class="dropdown-item text-white" href="{% url 'subject' 'Phonology' %}">Phonology</a></li>
+                                <li><a class="dropdown-item text-white" href="{% url 'subject' 'English' %}">English</a></li>
+                                <li><a class="dropdown-item text-white" href="{% url 'subject' 'Law' %}">Law</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="{% url 'questions-list' %}">Questions & Exercises</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white active" href="{% url 'account' %}"><i class="fa-solid fa-user"></i> Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white active" href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i> Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link text-primary active" href="{% url 'login' %}"><i class="fa-solid fa-user"></i> Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-success active" href="{% url 'register' %}"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <form class="d-flex" method="GET" action="{% url 'search' %}" role="search">
+                        
+                        <input class="form-control me-2" name="q" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-light" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-center alert alert-{{ message.tags }} w-auto">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <main class="">
+            {% block content %}
+            
+            {% endblock content %}
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

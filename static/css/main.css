@@ -1,0 +1,12 @@
+body {
+    background-color: #000000;
+}
+.card {
+    background-color: #9998a8;
+}
+.navbar a{
+    color: white;
+}
+.navbar-collapse a{
+    color: azure;
+}

@@ -1,0 +1,29 @@
+{% extends "users/base2.html" %}
+{% block descriptionmeta %}Questions and exercises on various topics in the forensic phonetics and linguistics
+field{% endblock descriptionmeta %}
+{% block title %}{{request.user.username}} Score List{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="row">
+        <h3 class="text-center">Your Results</h3>
+        {% for score in scores %}
+        <div class="col-md-3 mb-3 mx-auto">
+            <a class="text-decoration-none" href="{% url 'score-page' score.id %}">
+                <div class="card w-100 mx-auto text-bg-{% if score.score <= 50 %}danger{% else %}success{% endif %} mb-3"
+                    style="max-width: 540px;">
+                    <div class="card-header">{{score.questset.name}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Your Score Is: {{score.score}}%</h5>
+                        <p class="card-text">Number Of Questions: {{score.questset.questions.count}}</p>
+                        <p class="card-text">Difficulty: {{score.questset.difficulty}}</p>
+                        <p class="card-text">Subjects Included:
+                            {% for subj in score.questset.subjects.all %}{{subj.name}}.{% endfor %}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

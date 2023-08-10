@@ -1,0 +1,18 @@
+{% extends "users/base2.html" %}
+{% block title %}Change History, {{article.title}}{% endblock title %}
+{% block descriptionmeta %}Change History, for article: {{article.title}}{% endblock descriptionmeta %}
+
+{% block content %}
+    <div class="container mb-3">
+        <h5 class="text-center">Changes For Article: {{article.title}}</h5>
+        {% for change in changes %}
+            <div class="card mx-auto">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><p>{{change.changetext}} | {% if change.status == "1" %}<span class="badge bg-secondary">Pending</span>{% elif change.status == "2" %}<span class="badge bg-danger">Denied</span>{% elif change.status == "3" %}<span class="badge bg-success">Accepted</span>{% endif %}</p>
+                        <p>By: {{change.maker.username}}</p>
+                        <p>Date: {{change.date|date:"SHORT_DATE_FORMAT"}}</p></li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

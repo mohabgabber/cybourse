@@ -1,0 +1,18 @@
+<div class="card mx-auto {{article.subject.name}}" style="width: 18rem; margin-top: 10px;">
+    <a href="{% url 'article-detail' article.id %}" class="text-decoration-none" style="color: black;">
+        <img src="{{article.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{article.title}}</h5>
+    </a>
+    <p class="card-text">{{article.description}}</p>
+    <p class="card-text"><small class="text-muted">{{article.date|date:"SHORT_DATE_FORMAT"}}</small></p>
+    <a href="{% url 'article-detail' article.id %}" class="btn btn-primary">Open</a>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'remove-save' article.id %}" class="btn btn-outline-danger">Remove</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-danger">Login To Save</a>
+    {% endif %}
+    <br><br><a href="{% url 'subject' article.subject.name %}" class="text-decoration-none">Subject:
+        {{article.subject.name}}</a>
+</div>
+</div>

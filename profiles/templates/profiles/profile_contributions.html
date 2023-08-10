@@ -1,0 +1,20 @@
+{% extends "users/base2.html" %}
+{% block title %}Contributions by @{{user.username}}{% endblock title %}
+{% block metatags %}
+<meta name="author" content="{{user.first_name}} {{user.last_name}}">
+<meta name="og:image" content="https://fphl.org{{profile.picture.url}}" />
+<meta name="og:title" content="@{{user.username}} Profile | FPHL.org" />
+<meta property="og:type" content="website" />
+<meta name="og:description" content="{{profile.bio}}" />
+{% endblock metatags %}
+{% block content %}
+{% include "profiles/profile_template.html" %}
+<div class="row mb-3 mx-auto mt-3">
+    <h5 class="text-center">Articles written by @{{user.username}}</h5>
+    {% for article in contribs %}
+    <div class="col-md-3 mx-auto mt-2">
+        {% include "articles/articles-template.html" %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

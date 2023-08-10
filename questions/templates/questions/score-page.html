@@ -1,0 +1,51 @@
+{% extends "users/base2.html" %}
+{% block descriptionmeta %}Questions and
+exercises on various topics in the forensic phonetics and linguistics field{% endblock descriptionmeta %}
+
+{% block title %}{{quests.user.username}} Score Page{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto">
+  <div class="col w-auto mx-auto">
+    <div class="card w-100 mx-auto text-bg-{% if quests.score <= 50 %}danger{% else %}success{% endif %} mb-3"
+      style="max-width: 540px">
+      <div class="card-header">{{quests.questset.name}}</div>
+      <div class="card-body">
+        <h5 class="card-title">Your Score: {{quests.score}}%</h5>
+        <p class="card-text">
+          No. of Questions: {{quests.questset.questions.count}}
+        </p>
+        <p class="card-text">
+          Difficulty: {{quests.questset.difficulty}}
+        </p>
+        <p class="card-text">
+          Subject: {{quests.questset.subject}}
+        </p>
+      </div>
+    </div>
+
+    {% if quests.questset.hidden_answers %}
+    <h2 class="text-center">Answers Are Hidden</h2>
+    {% else %}
+    <h2 class="text-center">Answers:</h2>
+    {% for quest in quests.questset.questions.all %}
+    <div class="card mx-auto mb-3" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body text-black">
+            <h5 class="card-title">Q - {{quest.quest}}</h5>
+            <h5 class="card-text">A - {% if quest.ans == "1" %} {{quest.opt1}} {% elif quest.ans == "2" %}
+              {{quest.opt2}} {% elif quest.ans == "3" %} {{quest.opt3}} {% elif quest.ans == "4" %} {{quest.opt4}}
+              {% endif %}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="text-center mb-3">
+      <a class="btn btn-primary" href="{% url 'questions-list' %}"><- Back To Questions</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

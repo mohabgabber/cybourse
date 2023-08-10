@@ -1,0 +1,49 @@
+{% extends "users/base2.html" %}
+{% block descriptionmeta %}Questions and exercises on various topics in the forensic phonetics and linguistics
+field{% endblock descriptionmeta %}
+{% block title %}Questions and exercises{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="row w-auto">
+        {% for quest in questions %}
+        {% if not quest.hide %}
+        {% if not quest.private or request.user in quest.choose_users.all %}
+        <div class="col-md-5 mx-auto">
+            <div class="card mx-auto mb-3" style="max-width: 540px;">
+                {% if quest.repeat_solves == False and request.user in quest.solves.all %}
+                <a href="#" class="text-decoration-none"></a>
+                {% else %}
+                <a href="{% url 'questions-detail' quest.id %}" class="text-decoration-none">
+                    {% endif %}
+                    <div class="row ">
+                        <div class="col-md-8">
+                            <div class="card-body text-black">
+                                <h5 class="card-title">{{quest.name}}</h5>
+                                <p class="mb-1 card-text">Subject: {{quest.subject.name}} ({{quest.subsubject.name}})
+                                </p>
+                                <p class="mb-1 card-text">No. of Questions: {{quest.questions.count}}</p>
+                                <p class="card-text">Difficulty: {{quest.difficulty}}</p>
+                                <p class="card-text"><small
+                                        class="text-muted">{{quest.date|date:"SHORT_DATE_FORMAT"}}</small></p>
+                                {% if quest.private %}<p class="card-text badge bg-danger">Private</p>{% else %}<p
+                                    class="card-text badge bg-success">
+                                    Public</p>{% endif %}
+                                {% if quest.hidden_answers %}<p class="card-text badge bg-danger">Hidden Answers</p>
+                                {% else %}<p class="card-text badge bg-success">Public Answers</p>{% endif %}
+                                {% if not quest.repeat_solves and request.user in quest.solves.all %}<p
+                                    class="card-text badge bg-danger">Already solved</p>
+                                <p class="card-text badge bg-danger">One solve</p>
+                                {% else %}<p class="card-text badge bg-success">Repeatable</p>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

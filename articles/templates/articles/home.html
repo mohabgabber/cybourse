@@ -1,0 +1,64 @@
+{% extends "users/base2.html" %}
+{% block descriptionmeta %}
+The best place to learn forensic phonetics & linguistics on the web, explore all subjects,
+english, phonetics, phonology, linguistics, and much more.{% endblock descriptionmeta %}
+{% block metatags %}
+<meta name="og:title" content="FPHL | The home of forensic phonetics and linguistics" />
+<meta name="og:description"
+	content="learn everything about forensic phonetics, linguistics, phonology and much more. with quizzes and an exciting gamified experience!" />
+{% endblock metatags %}
+
+{% block title %}Home Page{% endblock title %}
+
+{% block content %}
+
+<!-- <div class="container"> -->
+<div class="row gx-4 gx-lg-5 align-items-center my-5">
+	<div class="col-lg-7">
+		<a href="{% url 'article-detail' featured.article.id %}">
+			<img class="img-fluid rounded mb-4 mb-lg-0" src="{{featured.article.image.url}}" alt="..." />
+		</a>
+	</div>
+	<div class="col-lg-5">
+		<a class="fs-6 text-primary fw-bold text-decoration-none"
+			href="{% url 'subject' featured.article.subject.name %}">{{featured.article.subject.name}}</a>
+		<h1 class="fw-bolder font-monospace">{{featured.article.title}}</h1>
+		<p>
+			{{featured.article.description}}
+		</p>
+		<p class="text-muted">{{featured.article.date|date:"F, jS o"}}</p>
+		<a class="btn btn-primary" href="{% url 'article-detail' featured.article.id %}">Read!</a>
+		{% if request.user.is_authenticated %}
+		{% if featured.article in saved %}
+		<a href="{% url 'remove-save' featured.article.id %}" class="btn btn-outline-danger">Remove</a>
+		{% else %}
+		<a href="{% url 'save-article' featured.article.id %}" class="btn btn-outline-secondary"><i
+				class="fa-solid fa-bookmark"></i></a>
+		{% endif %}
+		{% else %}
+		<a href="{% url 'login' %}" class="btn btn-danger">Login to save</a>
+		{% endif %}
+	</div>
+</div>
+<!-- Call to Action-->
+<div class="card text-white bg-dark fs-3 my-5 py-4 text-center">
+	<div class="card-body">
+		<p class="text-white m-0">
+			{{text.text|safe}}
+		</p>
+	</div>
+</div>
+<!-- Content Row-->
+<div class="row mx-auto">
+	{% for article in articles %}
+	{% if not article == featured.article %}
+	<div class="col-md-3 mb-3">
+		{% include 'articles/articles-template.html' %}
+	</div>
+	{% endif %}
+	{% endfor %}
+</div>
+
+{% include 'articles/pagination.html' %}
+<!-- </div> -->
+{% endblock content %}
