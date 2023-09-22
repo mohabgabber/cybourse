@@ -1,2 +1,2 @@
-# fphlcore
-An educational blog with articles about forensic phonetics &amp; linguistics
+# Cybourse
+An educational platform, with a built-in blog, quiz system, ranking system, and public profiles
