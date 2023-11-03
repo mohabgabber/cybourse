@@ -9,7 +9,7 @@ django-tinymce==3.6.1
 djangorestframework==3.14.0
 gunicorn==21.2.0
 Pillow==10.1.0
-pycodestyle==2.11.0
+pycodestyle==2.11.1
 python-decouple==3.8
 pytz==2023.3.post1
 sqlparse==0.4.4
