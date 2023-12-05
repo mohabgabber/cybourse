@@ -3,7 +3,7 @@ autopep8==2.0.4
 Django==5.0
 django-cors-headers==4.3.0
 django-mathfilters==1.0.0
-django-recaptcha==3.0.0
+django-recaptcha==4.0.0
 django-smtp-ssl==1.0
 django-tinymce==3.6.1
 djangorestframework==3.14.0
