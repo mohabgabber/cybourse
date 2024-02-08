@@ -11,5 +11,5 @@ gunicorn==21.2.0
 Pillow==10.2.0
 pycodestyle==2.11.1
 python-decouple==3.8
-pytz==2023.3.post1
+pytz==2024.1
 sqlparse==0.4.4
