@@ -3,8 +3,8 @@ import os
 from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("secret_key")
-DEBUG = config("debug")
-ALLOWED_HOSTS = ['127.0.0.1', 'fphl.org', "www.fphl.org"]
+DEBUG = True
+ALLOWED_HOSTS = ["*"]
 SITE_ID = 1
 INSTALLED_APPS = [
     # * Apps
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-ROOT_URLCONF = 'fphlcore.urls'
+ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -60,7 +60,7 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = 'fphlcore.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -119,7 +119,7 @@ LOGIN_REDIRECT_URL = 'home'
 RECAPTCHA_PUBLIC_KEY = config("recaptchapub")
 RECAPTCHA_PRIVATE_KEY = config("recaptchapri")
 RECAPTCHA_REQUIRED_SCORE = 0.85
-CSRF_TRUSTED_ORIGINS = ['https://*.fphl.org', 'https://.127.0.0.1']
+# CSRF_TRUSTED_ORIGINS = ['https://site.tld']
 
 # * Libraries Configuration
 

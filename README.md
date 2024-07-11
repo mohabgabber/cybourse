@@ -17,6 +17,35 @@ This site is built using:
 - Save articles for later
 - A lot more to come!
 
+## Running the site
+
+Clone the repo locally:
+
+`git clone https://github.com/mohabgabber/cybourse.git && cd cybourse`
+
+Create a virtual environment:
+
+`pip install virtualenv && virtualenv env`
+
+Install requirements
+
+`pip install -r requirements.txt`
+
+Create a .env file in the root directory of the repository and add the values for the following variables:
+```
+secret_key=INSERTVALUE // The secret key for the site deployment
+static_root=INSERTVALUE // The root directory for static files
+media_root=INSERTVALUE // The root directory for media files
+emuser=INSERTVALUE // Email user (the email itself) example@example.tld
+empass=INSERTVALUE // The email password
+emfrommail=INSERTVALUE // The "from" field when sending emails
+tinymce=INSERTVALUE // Tinymce API token is required, acquire one from here: https://www.tiny.cloud/
+recaptchapub=INSERTVALUE // Google Recaptcha Publich Key
+recaptchapri=INSERTVALUE // Google Recaptcha Private Key
+```
+
+
+
 ## Contributing
 To contribute, fork the repository and submit a pull request <3
 Just so you know, all contributions and enhancements are welcome.
