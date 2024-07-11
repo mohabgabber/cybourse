@@ -2,8 +2,8 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV3
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
 
 # class CaptchaForm(forms.Form):
@@ -17,7 +17,7 @@ class SignupForm(UserCreationForm):
                   'username', 'password1', 'password2')
 
     def clean_username(self):
-        username = self.cleaned_data.get('username')
+        username = str(self.cleaned_data.get('username'))
         lowercase_username = username.lower()
         return lowercase_username
 

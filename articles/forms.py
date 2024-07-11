@@ -1,8 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import ProposedArticles
-from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV2Checkbox
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV2Checkbox
 
 
 class CaptchaForm(forms.Form):

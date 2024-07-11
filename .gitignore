@@ -3,7 +3,6 @@ env/
 *.db
 __pycache__/
 migrations/
-media/*
 logs
 *.log
 npm-debug.log*

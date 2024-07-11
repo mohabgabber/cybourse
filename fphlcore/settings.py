@@ -21,7 +21,7 @@ INSTALLED_APPS = [
 
     'tinymce',
     'rest_framework',
-    'captcha',
+    'django_recaptcha',
     'mathfilters',
 
     # * Django Stuff
@@ -126,7 +126,8 @@ CSRF_TRUSTED_ORIGINS = ['https://*.fphl.org', 'https://.127.0.0.1']
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = False
 
-TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'
+TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/' + \
+    str(config("tinymce")) + '/tinymce/5/tinymce.min.js'
 
 TINYMCE_DEFAULT_CONFIG = {
     "height": "320px",

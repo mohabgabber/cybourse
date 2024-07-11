@@ -1,4 +1,3 @@
-from distutils.command.upload import upload
 from statistics import mode
 from django.db import models
 import uuid

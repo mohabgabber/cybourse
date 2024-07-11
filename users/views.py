@@ -66,8 +66,8 @@ class Register(View):
         form = SignupForm(request.POST)
         captcha = CaptchaForm(request.POST)
         if form.is_valid() and captcha.is_valid():
-            new_user = User.objects.create_user(username=form.cleaned_data.get(
-                "username"), password=form.cleaned_data.get("password"), email=form.cleaned_data.get("email"), first_name=form.cleaned_data.get("first_name"), last_name=form.cleaned_data.get("last_name"))
+            new_user = User.objects.create_user(username=str(form.cleaned_data.get(
+                "username")), password=form.cleaned_data.get("password"), email=form.cleaned_data.get("email"), first_name=form.cleaned_data.get("first_name"), last_name=form.cleaned_data.get("last_name"))
             login(request, new_user)
             messages.success(request, "Created your account successfully 😘")
             return redirect("home")
