@@ -20,7 +20,6 @@ urlpatterns = [
     path("wiki/", include("wiki.urls")),
     path("api/", include("api.urls")),
     path("", include("profiles.urls")),
-    path("tools/", include("tools.urls")),
 
     # * SEO
     path("favicon.ico", RedirectView.as_view(

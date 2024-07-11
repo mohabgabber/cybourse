@@ -15,7 +15,6 @@ INSTALLED_APPS = [
     'questions.apps.QuestionsConfig',
     'api.apps.ApiConfig',
     'profiles.apps.ProfilesConfig',
-    'tools.apps.ToolsConfig',
 
     # * Libraries and Frameworks
 
