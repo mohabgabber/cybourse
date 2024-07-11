@@ -1,6 +1,6 @@
 # Cybourse
 An educational platform, with a built-in blog, quiz system, ranking system, and public profiles
-**Currently I am doing a complete change of the project, so put it into your watchlist so that you don't miss out all the awesome features coming soon**
+**Currently I am doing a complete change of the project, so put it into your watchlist so that you don't miss out on all the awesome features coming soon**
 
 ## Technology Used
 This site is built using:
@@ -18,5 +18,22 @@ This site is built using:
 - A lot more to come!
 
 ## Contributing
-To contribute, just fork the repository and submit a pull request <3
-All contributions and enhancements are welcome.
+To contribute, fork the repository and submit a pull request <3
+Just so you know, all contributions and enhancements are welcome.
+
+## License
+    Cybourse, is an open-source educational platform, with tons of features!
+    Copyright (C) 2024  Mohab Gabber
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>
