@@ -15,6 +15,7 @@ env:
   media_root: media
   recaptchapub: key
   recaptchapri: keey
+  tinymce: dfdssdfsdfd
 jobs:
   build:
 
