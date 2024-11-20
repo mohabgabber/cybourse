@@ -12,4 +12,4 @@ Pillow==11.0.0
 pycodestyle==2.12.1
 python-decouple==3.8
 pytz==2024.2
-sqlparse==0.5.1
+sqlparse==0.5.2
